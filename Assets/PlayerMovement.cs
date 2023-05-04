@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;          // 跳躍力道
     public float jumpCooldown;       // 設定要幾秒後才能向上跳躍
     public float groundDrag;         // 地面的減速
+    public float airMultiplier;      // 在空中的加乘速度，如果設定為0就代表不能飛，建議這個值要小於1
 
     [Header("按鍵綁定")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -76,9 +77,15 @@ public class PlayerMovement : MonoBehaviour
         // 計算移動方向(其實就是計算X軸與Z軸兩個方向的力量)
         moveDirection = PlayerCamera.forward * verticalInput + PlayerCamera.right * horizontalInput;
 
-        // 如果在地面，則可以移動
+        // 如果在地面，移動方式為普通移動
         if (grounded)
+        {
+            moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
             rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+        // 如果不在地面，則移動速度還可以乘上一個在空中的加乘數字，可以製造人物一跳往上飛的超人飛行效果
+        else if (!grounded)
+            rbFirstPerson.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
     // 方法：偵測速度並減速
