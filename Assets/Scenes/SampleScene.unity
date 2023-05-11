@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 624546227}
   - component: {fileID: 624546225}
   - component: {fileID: 624546228}
+  - component: {fileID: 624546229}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -184,9 +185,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.0279963
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.030315995, z: 0}
 --- !u!4 &624546226
 Transform:
   m_ObjectHideFlags: 0
@@ -216,10 +217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 10
-  jumpCooldown: 1
+  jumpForce: 5
+  jumpCooldown: 0
   groundDrag: 1
-  airMultiplier: 0.8
+  airMultiplier: 0
   jumpKey: 32
   PlayerCamera: {fileID: 963194228}
   playerHeight: 2
@@ -243,6 +244,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &624546229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624546224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cf4d467ad03045b8fe8e1efb4cbcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCamera: {fileID: 963194227}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
