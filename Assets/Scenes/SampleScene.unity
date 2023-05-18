@@ -262,8 +262,10 @@ MonoBehaviour:
   magazineSize: 30
   bulletsLeft: 30
   reloadTime: 3
+  recoilForce: 20
   ammunitionDisplay: {fileID: 645093009}
   reloadingDisplay: {fileID: 845313047}
+  ani: {fileID: 0}
 --- !u!1 &645093007
 GameObject:
   m_ObjectHideFlags: 0

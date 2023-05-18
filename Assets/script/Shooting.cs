@@ -13,15 +13,19 @@ public class Shooting : MonoBehaviour
     public GameObject bullet;
 
     [Header("槍枝設定")]
-    public int magazineSize;    // 設定彈夾可以放多少顆子彈？
-    public int bulletsLeft;     // 子彈還有多少顆？(如果沒有要測試，你可以設定成 Private)
-    public float reloadTime;    // 設定換彈夾所需要的時間
+    public int magazineSize;        // 設定彈夾可以放多少顆子彈？
+    public int bulletsLeft;         // 子彈還有多少顆？(如果沒有要測試，你可以設定成 Private)
+    public float reloadTime;        // 設定換彈夾所需要的時間
+    public float recoilForce;       // 反作用力
 
     bool reloading;             // 布林變數：儲存是不是正在換彈夾的狀態？True：正在換彈夾、False：換彈夾的動作已結束
 
     [Header("UI物件")]
     public TextMeshProUGUI ammunitionDisplay; // 彈量顯示
     public TextMeshProUGUI reloadingDisplay;  // 顯示是不是正在換彈夾？
+
+    //bool allowInvoke = true;
+    public Animator ani;
 
     private void Start()
     {
@@ -74,12 +78,18 @@ public class Shooting : MonoBehaviour
         currentBullet.transform.forward = shootingDirection.normalized; // 將子彈飛行方向與射線方向一致
 
         currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 20, ForceMode.Impulse); // 依據飛行方向推送子彈
+        //currentBullet.GetComponent<Rigidbody>().AddForce(PlayerCamera.transform.up * , ForceMode.Impulse);
 
         bulletsLeft--;    // 將彈夾中的子彈減一，以下的寫法都是一樣的意思
                           //bulletsLeft -= 1;               
                           //bulletsLeft = bulletsLeft - 1;  // 比較囉嗦的寫法
 
+        // 後座力模擬
+        this.GetComponent<Rigidbody>().AddForce(-shootingDirection.normalized * recoilForce, ForceMode.Impulse);
+
         ShowAmmoDisplay();                 // 更新彈量顯示
+       // if (ani.SetTrigger != null)                                                                                   這行要更改(有錯
+            ani.SetTrigger("Fire");
     }
 
     // 方法：換彈夾的延遲時間設定
