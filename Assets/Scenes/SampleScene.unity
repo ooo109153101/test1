@@ -265,7 +265,7 @@ MonoBehaviour:
   recoilForce: 20
   ammunitionDisplay: {fileID: 645093009}
   reloadingDisplay: {fileID: 845313047}
-  ani: {fileID: 0}
+  animatorObject: {fileID: 1067088776}
 --- !u!1 &645093007
 GameObject:
   m_ObjectHideFlags: 0
