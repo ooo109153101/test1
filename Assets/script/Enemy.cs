@@ -32,6 +32,6 @@ public class Enemy : MonoBehaviour
     {
         // enableMove為true，就去追蹤目標
         if (enableMove)
-            transform.position = Vector3.Lerp(transform.position, targetObject.transform.position, 0.01f); // 讓自己往目標物的座標移動
+            transform.position = Vector3.Lerp(transform.position, targetObject.transform.position, 0.01f); // 讓自己往目標物的座標移動(Time.deltaTime)
     }
 }
